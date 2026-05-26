@@ -1,0 +1,98 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 680 540" role="img" aria-labelledby="title desc" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif">
+  <title id="title">amped system architecture</title>
+  <desc id="desc">Data flow between AEMO, the ingestion service, scheduling engine, vehicle integrations, and the user-facing web app.</desc>
+
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <style>
+      .t  { font-size: 14px; font-weight: 500; }
+      .ts { font-size: 12px; font-weight: 400; }
+      .arr { stroke: #5F5E5A; stroke-width: 1.2; fill: none; }
+      .legend-text { font-size: 12px; fill: #444441; }
+    </style>
+  </defs>
+
+  <!-- Title -->
+  <text x="40" y="28" font-size="14" font-weight="500" fill="#2C2C2A">amped — System architecture (production v1)</text>
+
+  <!-- External: AEMO -->
+  <g>
+    <rect x="40"  y="40"  width="160" height="56" rx="8" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="0.5"/>
+    <text x="120" y="64"  text-anchor="middle" class="t"  fill="#2C2C2A">AEMO NEMWeb</text>
+    <text x="120" y="82"  text-anchor="middle" class="ts" fill="#5F5E5A">Public price feeds</text>
+  </g>
+
+  <!-- External: Retailer (CDR) -->
+  <g>
+    <rect x="40"  y="120" width="160" height="56" rx="8" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="0.5"/>
+    <text x="120" y="144" text-anchor="middle" class="t"  fill="#2C2C2A">Retailer (CDR)</text>
+    <text x="120" y="162" text-anchor="middle" class="ts" fill="#5F5E5A">Interval consumption</text>
+  </g>
+
+  <!-- External: Vehicle / Charger -->
+  <g>
+    <rect x="480" y="40"  width="160" height="56" rx="8" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="0.5"/>
+    <text x="560" y="64"  text-anchor="middle" class="t"  fill="#2C2C2A">Tesla / OCPP / plug</text>
+    <text x="560" y="82"  text-anchor="middle" class="ts" fill="#5F5E5A">SoC, charge commands</text>
+  </g>
+
+  <!-- Backend tier label -->
+  <text x="340" y="222" text-anchor="middle" class="ts" fill="#5F5E5A">Backend services</text>
+
+  <!-- Ingestion service -->
+  <g>
+    <rect x="240" y="240" width="200" height="56" rx="8" fill="#E1F5EE" stroke="#0F6E56" stroke-width="0.5"/>
+    <text x="340" y="264" text-anchor="middle" class="t"  fill="#085041">Ingestion service</text>
+    <text x="340" y="282" text-anchor="middle" class="ts" fill="#0F6E56">Polls, parses, caches</text>
+  </g>
+
+  <!-- Scheduling engine -->
+  <g>
+    <rect x="240" y="320" width="200" height="56" rx="8" fill="#E1F5EE" stroke="#0F6E56" stroke-width="0.5"/>
+    <text x="340" y="344" text-anchor="middle" class="t"  fill="#085041">Scheduling engine</text>
+    <text x="340" y="362" text-anchor="middle" class="ts" fill="#0F6E56">Picks cheapest slots</text>
+  </g>
+
+  <!-- Vehicle adapter -->
+  <g>
+    <rect x="460" y="320" width="180" height="56" rx="8" fill="#E1F5EE" stroke="#0F6E56" stroke-width="0.5"/>
+    <text x="550" y="344" text-anchor="middle" class="t"  fill="#085041">Vehicle adapter</text>
+    <text x="550" y="362" text-anchor="middle" class="ts" fill="#0F6E56">Translates commands</text>
+  </g>
+
+  <!-- Postgres -->
+  <g>
+    <rect x="40"  y="320" width="160" height="56" rx="8" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.5"/>
+    <text x="120" y="344" text-anchor="middle" class="t"  fill="#3C3489">Postgres</text>
+    <text x="120" y="362" text-anchor="middle" class="ts" fill="#534AB7">Users, plans, history</text>
+  </g>
+
+  <!-- Web app -->
+  <g>
+    <rect x="240" y="440" width="200" height="56" rx="8" fill="#FAECE7" stroke="#993C1D" stroke-width="0.5"/>
+    <text x="340" y="464" text-anchor="middle" class="t"  fill="#712B13">amped web app</text>
+    <text x="340" y="482" text-anchor="middle" class="ts" fill="#993C1D">React on Cloudflare Pages</text>
+  </g>
+
+  <!-- Arrows -->
+  <line x1="120" y1="96"  x2="290" y2="240" class="arr" marker-end="url(#arrow)"/>
+  <line x1="120" y1="176" x2="290" y2="240" class="arr" marker-end="url(#arrow)" stroke-dasharray="4 3"/>
+  <line x1="560" y1="96"  x2="550" y2="320" class="arr" marker-end="url(#arrow)"/>
+  <line x1="340" y1="296" x2="340" y2="320" class="arr" marker-end="url(#arrow)"/>
+  <line x1="440" y1="348" x2="460" y2="348" class="arr" marker-end="url(#arrow)"/>
+  <line x1="240" y1="348" x2="200" y2="348" class="arr" marker-end="url(#arrow)"/>
+  <line x1="340" y1="376" x2="340" y2="440" class="arr" marker-end="url(#arrow)"/>
+
+  <!-- Legend -->
+  <rect x="40"  y="510" width="10" height="10" rx="2" fill="#E1F5EE" stroke="#0F6E56" stroke-width="0.5"/>
+  <text x="56"  y="519" class="legend-text">Built by amped</text>
+  <rect x="170" y="510" width="10" height="10" rx="2" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="0.5"/>
+  <text x="186" y="519" class="legend-text">External (third-party)</text>
+  <rect x="330" y="510" width="10" height="10" rx="2" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.5"/>
+  <text x="346" y="519" class="legend-text">Data store</text>
+  <rect x="430" y="510" width="10" height="10" rx="2" fill="#FAECE7" stroke="#993C1D" stroke-width="0.5"/>
+  <text x="446" y="519" class="legend-text">User-facing</text>
+  <text x="540" y="519" class="legend-text">--- = v2 (CDR)</text>
+</svg>
