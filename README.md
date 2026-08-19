@@ -6,7 +6,6 @@ This is the MVP demo — a working scheduler running on a hand-modelled NSW1 pri
 
 ---
 
-## Run locally
 
 You'll need Node.js 18+ installed.
 
@@ -14,9 +13,6 @@ You'll need Node.js 18+ installed.
 npm install
 npm run dev
 ```
-
-Opens at http://localhost:5173
-
 
 ## Project structure
 
